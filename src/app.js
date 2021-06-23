@@ -39,7 +39,22 @@ app.get("/student/:id",async(req,res)=>{
         }
         
     } catch (e) {
-        
+        return res.status(500).send(e)
+    }
+})
+
+app.delete("/student/:id",async(req,res)=>{
+    try {
+        const _id = req.params.id;
+         const deleteStudent = await Student.findByIdAndDelete({_id})
+         if(!_id){
+            return res.status(404).send();
+         }
+         else{
+             return res.send(deleteStudent);
+         }
+    } catch (e) {
+        return res.status(500).send(e)
     }
 })
 
