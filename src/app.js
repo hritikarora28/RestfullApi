@@ -43,6 +43,16 @@ app.get("/student/:id",async(req,res)=>{
     }
 })
 
+app.patch("/student/:id",async(req,res)=>{
+    try {
+        const _id = req.params.id;
+       const updatestudent = await Student.findByIdAndUpdate(_id,req.body,);
+       res.status(200).send(updatestudent)
+    } catch (e) {
+        res.status(404).send()
+    }
+})
+
 app.delete("/student/:id",async(req,res)=>{
     try {
         const _id = req.params.id;
